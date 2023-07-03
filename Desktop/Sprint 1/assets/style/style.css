@@ -1,0 +1,132 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  padding-bottom: 0.5rem;
+}
+
+.statsMain {
+  background-color: #e67fb8 !important;
+  padding: 1rem;
+}
+.card {
+  background-color: #e67fb8 !important;
+  padding: 1rem;
+}
+
+.navLink,
+.form {
+  background-color: #e67fb8 !important;
+}
+
+.navbar-nav > a:hover,
+.card a:hover {
+  border: 5px solid white !important;
+}
+
+.carousel-item img {
+  object-fit: cover;
+}
+
+.carouselBanner {
+  height: 35vh;
+}
+
+.display-2 {
+  margin-bottom: 0 !important;
+}
+
+.socials {
+  width: 2rem;
+  height: 2rem;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.w-mobile-75 {
+  width: 75% !important;
+}
+
+.table {
+  padding: 0.25rem 0rem !important;
+}
+
+.detailImg {
+  width: 40vw;
+  height: 60vh;
+}
+
+.detailDiv {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.img-fluid {
+  height: 100% !important;
+}
+
+.table {
+  margin-bottom: 0rem !important;
+}
+
+.navLinkUpcoming {
+  padding-bottom: 0rem !important;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+
+  .carouselBanner {
+    height: 30vh;
+  }
+
+  .carousel-caption {
+    bottom: 3rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1023px) {
+  .carouselBanner {
+    height: 35vh;
+  }
+
+  .navbar {
+    padding-bottom: 1rem !important;
+  }
+  .w-md-50 {
+    width: 50% !important;
+  }
+  .carousel-caption {
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .w-xl-25 {
+    width: 25% !important;
+  }
+
+  .carousel-caption {
+    bottom: 5.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .carouselBanner {
+    height: 35vh;
+  }
+}
