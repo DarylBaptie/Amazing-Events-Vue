@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
     />
     <title>Amazing Events | Past Events</title>
   </head>
-  <body class="bg-light">
+  <body class="bg-light d-flex flex-column h-100">
     <header>
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -72,7 +72,7 @@
       </nav>
     </header>
 
-    <main>
+    <main class="mb-4">
       <div
         id="carouselExampleControls"
         class="carousel slide mb-3"
@@ -150,78 +150,79 @@
         </button>
       </div>
 
-      <div>
+      <div class="pt-2">
         <form
-          class="d-flex flex-wrap justify-content-center align-items-center mt-3"
+          class="d-flex flex-column justify-content-center justify-content-lg-evenly align-items-center"
         >
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="foodFair"
-            />
-            <label class="form-check-label" for="foodFair">Food Fair</label>
-          </div>
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="museum"
-            />
-            <label class="form-check-label" for="museum">Museum</label>
-          </div>
+          <div class="d-md-flex">
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="foodFair"
+              />
+              <label class="form-check-label" for="foodFair">Food Fair</label>
+            </div>
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="museum"
+              />
+              <label class="form-check-label" for="museum">Museum</label>
+            </div>
 
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="costumeParty"
-            />
-            <label class="form-check-label" for="costumeParty"
-              >Costume Party</label
-            >
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="costumeParty"
+              />
+              <label class="form-check-label" for="costumeParty"
+                >Costume Party</label
+              >
+            </div>
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="musicConcert"
+              />
+              <label class="form-check-label" for="musicConcert"
+                >Music Concert</label
+              >
+            </div>
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="race"
+              />
+              <label class="form-check-label" for="race">Race</label>
+            </div>
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="bookExchange"
+              />
+              <label class="form-check-label" for="bookExchange"
+                >Book Exchange</label
+              >
+            </div>
+            <div class="form-check pe-4">
+              <input
+                type="checkbox"
+                class="form-check-input border-2"
+                id="cinema"
+              />
+              <label class="form-check-label" for="cinema"
+                >Let's go to the cinema</label
+              >
+            </div>
           </div>
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="musicConcert"
-            />
-            <label class="form-check-label" for="musicConcert"
-              >Music Concert</label
-            >
-          </div>
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="race"
-            />
-            <label class="form-check-label" for="race">Race</label>
-          </div>
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="bookExchange"
-            />
-            <label class="form-check-label" for="bookExchange"
-              >Book Exchange</label
-            >
-          </div>
-          <div class="form-check pe-1">
-            <input
-              type="checkbox"
-              class="form-check-input border-2"
-              id="cinema"
-            />
-            <label class="form-check-label" for="cinema"
-              >Let's go to the cinema</label
-            >
-          </div>
-
           <div
-            class="input-group mx-3 mt-3 mt-md-0 mt-lg-3 w-mobile-75 w-md-50 w-xl-25 mt-xl-0"
+            class="input-group mx-3 mt-3 mt-lg-3 w-mobile-75 w-md-50 mt-xl-0"
           >
             <input
               type="text"

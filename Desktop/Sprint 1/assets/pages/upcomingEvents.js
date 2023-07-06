@@ -9,13 +9,13 @@ function createCard(event) {
             <img src="${event.image}" class="card-img-top h-60"
             alt="food fair photo"">
             <div class="card-body d-flex flex-column"> 
-            <h5 class="card-title">${event.name}</h5>
-            <p class="card-text mb-3 fst-italic">
+            <h5 class="card-title pt-3 pb-4">${event.name}</h5>
+            <p class="card-text mb-3 pb-2 fst-italic">
             ${event.description}
           </p>
           <div class="d-flex flex-wrap justify-content-between mt-auto">
           <p class="align-self-center fw-bold">Price: ${event.price}</p>
-          <a href="./details.html" class="btn btn-danger fw-bold">
+          <a href="./details.html" class="btn btn-danger p-3 fw-bold">
             Details
           </a>
         </div>
