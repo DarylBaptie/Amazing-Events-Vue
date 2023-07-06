@@ -14,6 +14,12 @@ footer {
   padding-bottom: 0.5rem;
 }
 
+.card-img-top {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+}
+
 .statsMain {
   background-color: #e67fb8 !important;
   padding: 1rem;
