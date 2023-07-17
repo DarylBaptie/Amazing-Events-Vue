@@ -1,12 +1,17 @@
-let events = data.events;
+let events;
+let eventCard;
 let cardContainer = document.getElementById("cardContainer");
 let parameter = location.search;
-
 let params = new URLSearchParams(parameter);
-
 let id = params.get("parameter");
 
-let eventCard = data.events.find((event) => event._id === id);
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+  .then((res) => res.json())
+  .then((data) => {
+    events = data.events;
+    eventCard = events.find((event) => event._id == id);
+    printCard(eventCard, cardContainer);
+  });
 
 function createCard(event) {
   return `
@@ -43,5 +48,3 @@ function printCard(eventCard, elementHTML) {
   let template = createCard(eventCard);
   elementHTML.innerHTML += template;
 }
-
-printCard(eventCard, cardContainer);

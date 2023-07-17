@@ -1,6 +1,29 @@
-let container = document.getElementById("upcomingEventsContainer");
-let currentDate = data.currentDate;
-let events = data.events;
+let containerUpcoming = document.getElementById("upcomingEventsContainer");
+let currentDate;
+let events;
+let categories;
+let categoriesNoRepeat;
+let categoriesArray;
+let checkboxContainer = document.getElementById("checkboxContainer");
+let inputSearch = document.getElementById("searchBar");
+let checkboxChecked = [];
+
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+  .then((res) => res.json())
+  .then((data) => {
+    events = data.events;
+    console.log(events);
+    currentDate = data.currentDate;
+    console.log(currentDate);
+    categories = events.map((event) => event.category);
+    categoriesNoRepeat = new Set(categories);
+    categoriesArray = Array.from(categoriesNoRepeat);
+    printCard(events, containerUpcoming);
+    showCheckbox(categoriesArray, checkboxContainer);
+  });
+
+// functions
 function createCard(event) {
   return `<div class="card col-11 col-md-5 col-lg-3 border border-4 text-white">
             <img src="${event.image}" class="card-img-top h-60"
@@ -37,14 +60,6 @@ function printCard(array, elementHTML) {
   }
 }
 
-printCard(events, container);
-
-let categories = events.map((event) => event.category);
-let categoriesNoRepeat = new Set(categories);
-let categoriesArray = Array.from(categoriesNoRepeat);
-let checkboxContainer = document.getElementById("checkboxContainer");
-let inputSearch = document.getElementById("searchBar");
-
 function createCheckbox(category) {
   return `<div><input
   type="checkbox"
@@ -61,21 +76,6 @@ function showCheckbox(array, location) {
     location.innerHTML += createCheckbox(checkbox);
   }
 }
-
-showCheckbox(categoriesArray, checkboxContainer);
-
-let checkboxChecked = [];
-
-checkboxContainer.addEventListener("change", (e) => {
-  let checkedCheckboxes = document.querySelectorAll(
-    "input[type='checkbox']:checked"
-  );
-  let checkedArray = Array.from(checkedCheckboxes);
-  checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(container);
-  printCard(arrayFinal, container);
-});
 
 function emptyContainer(elementHTML) {
   return (elementHTML.innerHTML = "");
@@ -109,8 +109,22 @@ let filterSearch = (array, input) => {
   return eventsFiltered;
 };
 
+// eventlisteners
+
+checkboxContainer.addEventListener("change", (e) => {
+  let checkedCheckboxes = document.querySelectorAll(
+    "input[type='checkbox']:checked"
+  );
+  let checkedArray = Array.from(checkedCheckboxes);
+  checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
+  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
+  emptyContainer(containerUpcoming);
+  printCard(arrayFinal, containerUpcoming);
+});
+
+
 inputSearch.addEventListener("input", (e) => {
   let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(container);
-  printCard(arrayFinal, container);
+  emptyContainer(containerUpcoming);
+  printCard(arrayFinal, containerUpcoming);
 });
