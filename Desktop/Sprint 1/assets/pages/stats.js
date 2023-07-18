@@ -1,19 +1,33 @@
 let events;
 let currentDate;
-let headTable = document.getElementById("headTable");
-let table1 = document.getElementById("firstTable");
-let table2 = document.getElementById("secondTable");
+let table1 = document.getElementById("headTable");
+let table2 = document.getElementById("firstTable");
+let table3 = document.getElementById("secondTable");
+let futureEvents;
+let pastEvents;
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then((res) => res.json())
   .then((data) => {
     events = data.events;
     currentDate = data.currentDate;
-    printRow(revenueFuture(events), table1);
-    printRow(revenuePast(events), table2);
-    printRow2(events, headTable);
+    pastEvents = events.filter((event) => event.date < currentDate);
+    futureEvents = events.filter((event) => event.date > currentDate);
+    console.log(pastEvents, futureEvents);
+    printRow(
+      events,
+      revenue(events, futureEvents, "estimate"),
+      revenue(events, pastEvents, "assistance"),
+      // revenuePast(events),
+      // revenueFuture(events),
+      table1,
+      table2,
+      table3
+    );
   })
   .catch((error) => console.log(error));
+
+/// FUNCTIONS 1ST ROW
 
 function biggestCapacity(array) {
   const capacitySort = array.sort((a, b) => {
@@ -32,7 +46,9 @@ function biggestCapacity(array) {
 function percentageAssistance(array) {
   let pastEvents = array.filter((event) => event.date < currentDate);
   for (let event of pastEvents) {
-    event.percentage = (event.assistance / event.capacity) * 100;
+    event.percentage = (event.assistance / event.capacity)
+      .toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2 })
+      .replace(".00", "");
   }
 
   const percentageAssistanceSort = pastEvents.sort((a, b) => {
@@ -48,69 +64,53 @@ function percentageAssistance(array) {
   return percentageAssistanceSort;
 }
 
-////////////
+/// FUNCTIONS 2ND ROW
 
-function revenuePast(array) {
-  let pastEvents = array.filter((event) => event.date < currentDate);
-  for (let event of pastEvents) {
-    event.revenue = event.assistance * event.price;
+function revenue(array, array2, attendees) {
+  for (let event of array) {
+    event.revenue = event[attendees] * event.price;
   }
-
-  const summed = pastEvents.reduce((acc, cur, i) => {
-    const item = i > 0 && acc.find(({ category }) => category === cur.category);
+  const categoryArray = array2.reduce((acc, cur) => {
+    const item = acc.find(({ category }) => category === cur.category);
     if (item)
       (item.revenue += cur.revenue),
         (item.capacity += cur.capacity),
-        (item.assistance += cur.assistance);
+        (item[attendees] += cur[attendees]);
     else
       acc.push({
         category: cur.category,
         revenue: cur.revenue,
         capacity: cur.capacity,
-        assistance: cur.assistance,
-      }); // don't push cur here
+        [attendees]: cur[attendees],
+      });
     return acc;
   }, []);
 
-  for (let category of summed) {
-    category.percentileAssistance = (
-      (category.assistance / category.capacity) *
-      100
-    ).toFixed(2);
+  for (let category of categoryArray) {
+    category.percentileAssistance = (category[attendees] / category.capacity)
+      .toLocaleString("en-US", {
+        style: "percent",
+        minimumFractionDigits: 2,
+      })
+      .replace(".00", "");
+    category.revenue = category.revenue.toLocaleString("en-US");
   }
 
-  return summed;
+  return categoryArray;
 }
 
-function revenueFuture(array) {
-  let pastEvents = array.filter((event) => event.date > currentDate);
-  for (let event of pastEvents) {
-    event.revenue = event.estimate * event.price;
-  }
-  const summed = pastEvents.reduce((acc, cur, i) => {
-    const item = i > 0 && acc.find(({ category }) => category === cur.category);
-    if (item)
-      (item.revenue += cur.revenue),
-        (item.capacity += cur.capacity),
-        (item.estimate += cur.estimate);
-    else
-      acc.push({
-        category: cur.category,
-        revenue: cur.revenue,
-        capacity: cur.capacity,
-        estimate: cur.estimate,
-      }); // don't push cur here
-    return acc;
-  }, []);
+/// FUNCTIONS CREATE AND PRINT ROWS
 
-  for (let category of summed) {
-    category.percentileAssistance = (
-      (category.estimate / category.capacity) *
-      100
-    ).toFixed(2);
-  }
+function firstRow(array) {
+  let highestEvent = biggestCapacity(array);
+  let highestPercentage = percentageAssistance(array)[0];
+  let lowestPercentage =
+    percentageAssistance(array)[percentageAssistance(array).length - 1];
 
-  return summed;
+  return `
+  <td>${highestPercentage.name} (${highestPercentage.percentage})</td>
+  <td>${lowestPercentage.name}: (${lowestPercentage.percentage})</td>
+  <td>${highestEvent.name} (${highestEvent.capacity})</td>`;
 }
 
 function createRow(category) {
@@ -121,26 +121,13 @@ function createRow(category) {
   `;
 }
 
-function printRow(array, location) {
-  for (let checkbox of array) {
-    location.innerHTML += createRow(checkbox);
+function printRow(array1, array2, array3, location1, location2, location3) {
+  location1.innerHTML += firstRow(array1);
+
+  for (let checkbox of array2) {
+    location2.innerHTML += createRow(checkbox);
   }
-}
-
-function firstRow(array) {
-  let highestEvent = biggestCapacity(array);
-  let highestPercentage = percentageAssistance(array)[0];
-  let lowestPercentage =
-    percentageAssistance(array)[percentageAssistance(array).length - 1];
-  console.log(lowestPercentage);
-  console.log(highestPercentage);
-
-  return `
-  <td>${highestPercentage.name}</td>
-  <td>${lowestPercentage.name}</td>
-  <td>${highestEvent.name}</td>`;
-}
-
-function printRow2(array, location) {
-  location.innerHTML += firstRow(array);
+  for (let checkbox of array3) {
+    location3.innerHTML += createRow(checkbox);
+  }
 }

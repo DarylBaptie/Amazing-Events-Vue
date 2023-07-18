@@ -60,6 +60,7 @@ p {
 
 .table {
   padding: 0.25rem 0rem !important;
+  width: 100%;
 }
 
 .detailImg {
@@ -83,6 +84,10 @@ p {
 
 .navLinkUpcoming {
   padding-bottom: 0rem !important;
+}
+
+.colTable {
+  width: 33%;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
