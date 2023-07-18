@@ -9,7 +9,12 @@ export function createCard(event) {
               </p>
               <div class="d-flex flex-wrap justify-content-between mt-auto pt-3">
                 <p class="align-self-center fw-bold">Price: ${event.price}</p>
-                <a href="./assets/pages/details.html?parameter=${event._id}" class="btn btn-danger p-3 fw-bold">
+                
+                <a href="${
+                  window.location.pathname == "/Desktop/Sprint%201/index.html"
+                    ? "./assets/pages/details.html?parameter="
+                    : "./details.html?parameter="
+                } ${event._id}" class="btn btn-danger p-3 fw-bold">
                 Details
                 </a>
               </div>
@@ -38,7 +43,7 @@ export function emptyContainer(elementHTML) {
   return (elementHTML.innerHTML = "");
 }
 
-let filterCheckbox = (array, checkedArray) => {
+export let filterCheckbox = (array, checkedArray) => {
   let checkboxesFiltered = array.filter((event) =>
     checkedArray.includes(event.category)
   );

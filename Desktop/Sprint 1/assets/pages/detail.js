@@ -35,7 +35,10 @@ function createCard(event) {
               <p>Category: ${event.category}</p>
               <p>Place: ${event.place}</p>
               <p>Capacity: ${event.capacity}</p>
-              <p>Assistance/Estimate: ${event.assistance || event.capacity} </p>
+              <p>
+              ${event.assistance ? "Assistance" : "Estimate"}: ${
+    event.assistance || event.capacity
+  } </p>
               <p>Price: ${event.price}</p>
             </div>
           </div>

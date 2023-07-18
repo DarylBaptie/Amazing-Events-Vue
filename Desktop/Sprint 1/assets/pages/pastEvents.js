@@ -39,6 +39,7 @@ function filterCard(array) {
       template += createCard(event);
     }
   }
+  console.log(template);
   return template;
 }
 
@@ -52,11 +53,11 @@ checkboxContainer.addEventListener("change", (e) => {
   checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
   let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
   emptyContainer(containerPast);
-  printCard(arrayFinal, containerPast);
+  printCard(containerPast, filterCard(arrayFinal));
 });
 
 inputSearch.addEventListener("input", (e) => {
   let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
   emptyContainer(containerPast);
-  printCard(arrayFinal, containerPast);
+  printCard(containerPast, filterCard(arrayFinal));
 });

@@ -18,8 +18,6 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
       events,
       revenue(events, futureEvents, "estimate"),
       revenue(events, pastEvents, "assistance"),
-      // revenuePast(events),
-      // revenueFuture(events),
       table1,
       table2,
       table3
@@ -102,7 +100,7 @@ function revenue(array, array2, attendees) {
 /// FUNCTIONS CREATE AND PRINT ROWS
 
 function firstRow(array) {
-  let highestEvent = biggestCapacity(array);
+  let highestCapacity = biggestCapacity(array);
   let highestPercentage = percentageAssistance(array)[0];
   let lowestPercentage =
     percentageAssistance(array)[percentageAssistance(array).length - 1];
@@ -110,7 +108,9 @@ function firstRow(array) {
   return `
   <td>${highestPercentage.name} (${highestPercentage.percentage})</td>
   <td>${lowestPercentage.name}: (${lowestPercentage.percentage})</td>
-  <td>${highestEvent.name} (${highestEvent.capacity})</td>`;
+  <td>${highestCapacity.name} (${highestCapacity.capacity.toLocaleString(
+    "en-US"
+  )})</td>`;
 }
 
 function createRow(category) {
@@ -121,13 +121,13 @@ function createRow(category) {
   `;
 }
 
-function printRow(array1, array2, array3, location1, location2, location3) {
-  location1.innerHTML += firstRow(array1);
+function printRow(array1, array2, array3, table1, table2, table3) {
+  table1.innerHTML += firstRow(array1);
 
   for (let checkbox of array2) {
-    location2.innerHTML += createRow(checkbox);
+    table2.innerHTML += createRow(checkbox);
   }
   for (let checkbox of array3) {
-    location3.innerHTML += createRow(checkbox);
+    table3.innerHTML += createRow(checkbox);
   }
 }

@@ -15,6 +15,8 @@ let categoriesArray;
 let checkboxContainer = document.getElementById("checkboxContainer");
 let inputSearch = document.getElementById("searchBar");
 let checkboxChecked = [];
+let pastEventTemplate = "";
+let upcomingEventTemplate = "";
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then((res) => res.json())
@@ -50,11 +52,11 @@ checkboxContainer.addEventListener("change", (e) => {
   checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
   let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
   emptyContainer(containerUpcoming);
-  printCard(arrayFinal, containerUpcoming);
+  printCard(containerUpcoming, filterCard(arrayFinal));
 });
 
 inputSearch.addEventListener("input", (e) => {
   let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
   emptyContainer(containerUpcoming);
-  printCard(arrayFinal, containerUpcoming);
+  printCard(containerUpcoming, filterCard(arrayFinal));
 });
