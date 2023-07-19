@@ -11,7 +11,8 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     events = data.events;
     eventCard = events.find((event) => event._id == id);
     printCard(eventCard, cardContainer);
-  });
+  })
+  .catch((err) => console.log(err));
 
 function createCard(event) {
   return `

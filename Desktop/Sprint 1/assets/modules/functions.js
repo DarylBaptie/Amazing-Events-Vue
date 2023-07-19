@@ -49,7 +49,6 @@ export let filterCheckbox = (array, checkedArray) => {
   );
   if (checkboxesFiltered.length == 0 && checkboxesFiltered.length == 0) {
     checkboxesFiltered = array;
-    console.log(array);
   }
   return checkboxesFiltered;
 };
@@ -73,6 +72,8 @@ export function crossedFilters(array, input, checkboxChecked) {
 }
 
 export function filterCard(array, currentDate) {
+  let pastEventTemplate = "";
+  let upcomingEventTemplate = "";
   for (let event of array) {
     if (event.date < currentDate) {
       pastEventTemplate += createCard(event);

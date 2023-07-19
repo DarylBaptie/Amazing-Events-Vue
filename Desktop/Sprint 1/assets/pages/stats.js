@@ -13,17 +13,16 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     currentDate = data.currentDate;
     pastEvents = events.filter((event) => event.date < currentDate);
     futureEvents = events.filter((event) => event.date > currentDate);
-    console.log(pastEvents, futureEvents);
     printRow(
       events,
-      revenue(events, futureEvents, "estimate"),
-      revenue(events, pastEvents, "assistance"),
+      revenueAssistance(events, futureEvents, "estimate"),
+      revenueAssistance(events, pastEvents, "assistance"),
       table1,
       table2,
       table3
     );
   })
-  .catch((error) => console.log(error));
+  .catch((err) => console.log(err));
 
 /// FUNCTIONS 1ST ROW
 
@@ -64,7 +63,7 @@ function percentageAssistance(array) {
 
 /// FUNCTIONS 2ND ROW
 
-function revenue(array, array2, attendees) {
+function revenueAssistance(array, array2, attendees) {
   for (let event of array) {
     event.revenue = event[attendees] * event.price;
   }
@@ -91,7 +90,11 @@ function revenue(array, array2, attendees) {
         minimumFractionDigits: 2,
       })
       .replace(".00", "");
-    category.revenue = category.revenue.toLocaleString("en-US");
+    category.revenue = category.revenue.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    });
   }
 
   return categoryArray;
@@ -106,18 +109,21 @@ function firstRow(array) {
     percentageAssistance(array)[percentageAssistance(array).length - 1];
 
   return `
+  <tr>
   <td>${highestPercentage.name} (${highestPercentage.percentage})</td>
   <td>${lowestPercentage.name}: (${lowestPercentage.percentage})</td>
   <td>${highestCapacity.name} (${highestCapacity.capacity.toLocaleString(
     "en-US"
-  )})</td>`;
+  )})</td>
+  </tr>`;
 }
 
 function createRow(category) {
-  return `
+  return `<tr>
   <td >${category.category}</td>
   <td >${category.revenue}</td>
   <td >${category.percentileAssistance}</td>
+  </tr>
   `;
 }
 

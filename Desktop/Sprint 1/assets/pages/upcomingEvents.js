@@ -15,8 +15,6 @@ let categoriesArray;
 let checkboxContainer = document.getElementById("checkboxContainer");
 let inputSearch = document.getElementById("searchBar");
 let checkboxChecked = [];
-let pastEventTemplate = "";
-let upcomingEventTemplate = "";
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then((res) => res.json())
@@ -28,7 +26,8 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     categoriesArray = Array.from(categoriesNoRepeat);
     printCard(containerUpcoming, filterCard(events));
     showCheckbox(categoriesArray, checkboxContainer);
-  });
+  })
+  .catch((err) => console.log(err));
 
 // functions
 

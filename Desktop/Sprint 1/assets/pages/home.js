@@ -12,6 +12,7 @@ let checkboxContainer = document.getElementById("checkboxContainer");
 let inputSearch = document.getElementById("searchBar");
 let checkboxChecked = [];
 let events;
+let container = document.getElementById("homeCardContainer");
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then((res) => res.json())
@@ -23,9 +24,7 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     printCard(events, container);
     showCheckbox(categoriesArray, checkboxContainer);
   })
-  .catch((error) => console.log(error));
-
-let container = document.getElementById("homeCardContainer");
+  .catch((err) => console.log(err));
 
 // Functions
 
