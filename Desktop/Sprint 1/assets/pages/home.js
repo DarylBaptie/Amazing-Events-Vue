@@ -1,60 +1,37 @@
-import {
-  createCard,
-  showCheckbox,
-  emptyContainer,
-  crossedFilters,
-} from "../modules/functions.js";
+const { createApp } = Vue;
 
-let categories;
-let categoriesNoRepeat;
-let categoriesArray;
-let checkboxContainer = document.getElementById("checkboxContainer");
-let inputSearch = document.getElementById("searchBar");
-let checkboxChecked = [];
-let events;
-let container = document.getElementById("homeCardContainer");
-
-fetch("https://mindhub-xj03.onrender.com/api/amazing")
-  .then((res) => res.json())
-  .then((data) => {
-    events = data.events;
-    categories = events.map((event) => event.category);
-    categoriesNoRepeat = new Set(categories);
-    categoriesArray = Array.from(categoriesNoRepeat);
-    printCard(events, container);
-    showCheckbox(categoriesArray, checkboxContainer);
-  })
-  .catch((err) => console.log(err));
-
-// Functions
-
-function printCard(array, elementHTML) {
-  let template = "";
-  for (let event of array) {
-    template += createCard(event);
-  }
-  elementHTML.innerHTML += template;
-  if (template.length == 0) {
-    elementHTML.innerHTML = `NO RESULTS FOUND`;
-  }
-}
-
-// Event Listeners
-checkboxContainer.addEventListener("change", (e) => {
-  let checkedCheckboxes = document.querySelectorAll(
-    "input[type='checkbox']:checked"
-  );
-  let checkedArray = Array.from(checkedCheckboxes);
-  checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
-
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-
-  emptyContainer(container);
-  printCard(arrayFinal, container);
-});
-
-inputSearch.addEventListener("input", (e) => {
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(container);
-  printCard(arrayFinal, container);
-});
+createApp({
+  data() {
+    return {
+      events: [],
+      categories: [],
+      valueSearch: "",
+      checkboxChecked: [],
+      eventsFiltered: [],
+    };
+  },
+  created() {
+    fetch("https://mindhub-xj03.onrender.com/api/amazing")
+      .then((res) => res.json())
+      .then((data) => {
+        this.events = data.events;
+        this.eventsFiltered = data.events;
+        this.categories = [
+          ...new Set(data.events.map((event) => event.category)),
+        ];
+        console.log(this.categories);
+      })
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    filter() {
+      this.eventsFiltered = this.events.filter(
+        (event) =>
+          event.name.toLowerCase().startsWith(this.valueSearch.toLowerCase()) &&
+          (this.checkboxChecked.includes(event.category) ||
+            this.checkboxChecked.length == 0)
+      );
+      console.log(this.eventsFiltered);
+    },
+  },
+}).mount("#app");

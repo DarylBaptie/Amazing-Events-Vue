@@ -13,222 +13,277 @@
     />
     <title>Amazing Events | Home</title>
   </head>
-  <body class="bg-light d-flex flex-column h-100">
-    <header>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img
-              src="./assets/images/amazing_brand.png"
-              alt="Amazing_Events_logo"
-              width="175"
-              height="50"
-            />
-          </a>
+  <div id="app">
+    <body class="bg-light d-flex flex-column h-100">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img
+                src="./assets/images/amazing_brand.png"
+                alt="Amazing_Events_logo"
+                width="175"
+                height="50"
+              />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarNavAltMarkup"
+            >
+              <div class="navbar-nav">
+                <a
+                  class="navLink nav-link active border border-3 m-1 text-white"
+                  aria-current="page"
+                  href="#"
+                  >HOME</a
+                >
+                <a
+                  class="navLink nav-link border border-3 m-1 text-white"
+                  href="./assets/pages/upcomingEvents.html"
+                  >UPCOMING EVENTS</a
+                >
+                <a
+                  class="navLink border border-3 nav-link border m-1 text-white"
+                  href="./assets/pages/pastEvents.html"
+                  >PAST EVENTS</a
+                >
+                <a
+                  class="navLink border border-3 nav-link border m-1 text-white"
+                  href="./assets/pages/contact.html"
+                  >CONTACT</a
+                >
+                <a
+                  class="navLink border border-3 nav-link border m-1 text-white"
+                  href="./assets/pages/stats.html"
+                  >STATS</a
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main class="mb-4">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide mb-3"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="./assets/images/optional_banner_1.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="home_banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">HOME</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./assets/images/optional_banner_2.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="home_banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">HOME</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./assets/images/optional_banner_3.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="home_banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">HOME</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./assets/images/optional_banner_4.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="home_banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">HOME</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./assets/images/optional_banner_5.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="home_banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">HOME</h2>
+              </div>
+            </div>
+          </div>
           <button
-            class="navbar-toggler"
+            class="carousel-control-prev"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
           </button>
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNavAltMarkup"
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
           >
-            <div class="navbar-nav">
-              <a
-                class="navLink nav-link active border border-3 m-1 text-white"
-                aria-current="page"
-                href="#"
-                >HOME</a
-              >
-              <a
-                class="navLink nav-link border border-3 m-1 text-white"
-                href="./assets/pages/upcomingEvents.html"
-                >UPCOMING EVENTS</a
-              >
-              <a
-                class="navLink border border-3 nav-link border m-1 text-white"
-                href="./assets/pages/pastEvents.html"
-                >PAST EVENTS</a
-              >
-              <a
-                class="navLink border border-3 nav-link border m-1 text-white"
-                href="./assets/pages/contact.html"
-                >CONTACT</a
-              >
-              <a
-                class="navLink border border-3 nav-link border m-1 text-white"
-                href="./assets/pages/stats.html"
-                >STATS</a
-              >
-            </div>
-          </div>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-      </nav>
-    </header>
-    <main class="mb-4">
-      <div
-        id="carouselExampleControls"
-        class="carousel slide mb-3"
-        data-bs-ride="carousel"
+
+        <div class="pt-2">
+          <form
+            class="d-flex flex-column justify-content-center justify-content-lg-evenly align-items-center"
+          >
+            <div class="d-flex flex-column flex-md-row" id="checkboxContainer">
+              <template v-for="category of categories">
+                <div>
+                  <input
+                    type="checkbox"
+                    class="form-check-input border-2"
+                    v-bind:id="category"
+                    name="category"
+                    v-bind:value="category"
+                    v-model="checkboxChecked"
+                    v-on:change="filter"
+                  />
+                  <label class="form-check-label pe-2" v-bind:for="category"
+                    >{{category}}
+                  </label>
+                </div>
+              </template>
+            </div>
+            <div
+              class="input-group mx-3 mt-3 mt-lg-3 w-mobile-75 w-md-50 mt-xl-0"
+            >
+              <input
+                id="searchBar"
+                type="text"
+                class="form-control border-2"
+                placeholder="Search"
+                aria-label="Input group example"
+                aria-describedby="basic-addon1"
+                v-on:input="filter"
+                v-model="valueSearch"
+              />
+              <span class="input-group-text" id="basic-addon1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  ></path>
+                </svg>
+              </span>
+            </div>
+          </form>
+        </div>
+        <div
+          id="homeCardContainer"
+          class="cardContainer mt-4 container-fluid d-flex justify-content-evenly flex-wrap gap-3"
+        >
+          <template
+            v-if="eventsFiltered.length > 0"
+            v-for="event of eventsFiltered"
+          >
+            <div
+              class="card col-11 col-md-5 col-lg-3 border border-4 text-white"
+            >
+              <img
+                v-bind:src="event.image"
+                class="card-img-top"
+                alt="food fair
+              photo"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title pt-3 pb-4">{{event.name}}</h5>
+                <p class="card-text mb-3 fst-italic">{{event.description}}</p>
+                <div
+                  class="d-flex flex-wrap justify-content-between mt-auto pt-3"
+                >
+                  <p class="align-self-center fw-bold">
+                    Price: {{event.price}}
+                  </p>
+
+                  <a
+                    v-bind:href="'./assets/pages/details.html?parameter=%'+event._id"
+                    class="btn btn-danger p-3 fw-bold"
+                  >
+                    Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <h2>NO RESULTS FOUND</h2>
+          </template>
+        </div>
+      </main>
+      <footer
+        class="container d-flex flex-wrap justify-content-between pt-3 mt-auto border-top"
       >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="./assets/images/optional_banner_1.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="home_banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">HOME</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./assets/images/optional_banner_2.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="home_banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">HOME</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./assets/images/optional_banner_3.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="home_banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">HOME</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./assets/images/optional_banner_4.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="home_banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">HOME</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./assets/images/optional_banner_5.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="home_banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">HOME</h2>
-            </div>
-          </div>
+        <ul class="nav col-md-4 d-flex justify-content-md-start">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="./assets/images/whatsapp.png"
+                alt="whatsapp logo"
+              />
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="./assets/images/instagram.png"
+                alt="instagram logo"
+            /></a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="./assets/images/facebook.png"
+                alt="facebook logo"
+            /></a>
+          </li>
+        </ul>
+        <div class="col-md-4 d-flex align-items-center justify-content-md-end">
+          <span class="mb-md-0 text-body-secondary">COHORT 49</span>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+      </footer>
 
-      <div class="pt-2">
-        <form
-          class="d-flex flex-column justify-content-center justify-content-lg-evenly align-items-center"
-        >
-          <div
-            class="d-flex flex-column flex-md-row"
-            id="checkboxContainer"
-          ></div>
-          <div
-            class="input-group mx-3 mt-3 mt-lg-3 w-mobile-75 w-md-50 mt-xl-0"
-          >
-            <input
-              id="searchBar"
-              type="text"
-              class="form-control border-2"
-              placeholder="Search"
-              aria-label="Input group example"
-              aria-describedby="basic-addon1"
-            />
-            <span class="input-group-text" id="basic-addon1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-search"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                ></path>
-              </svg>
-            </span>
-          </div>
-        </form>
-      </div>
-      <div
-        id="homeCardContainer"
-        class="cardContainer mt-4 container-fluid d-flex justify-content-evenly flex-wrap gap-3"
-      ></div>
-    </main>
-
-    <footer
-      class="container d-flex flex-wrap justify-content-between pt-3 mt-auto border-top"
-    >
-      <ul class="nav col-md-4 d-flex justify-content-md-start">
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="./assets/images/whatsapp.png"
-              alt="whatsapp logo"
-            />
-          </a>
-        </li>
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="./assets/images/instagram.png"
-              alt="instagram logo"
-          /></a>
-        </li>
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="./assets/images/facebook.png"
-              alt="facebook logo"
-          /></a>
-        </li>
-      </ul>
-      <div class="col-md-4 d-flex align-items-center justify-content-md-end">
-        <span class="mb-md-0 text-body-secondary">COHORT 49</span>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
+      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
     "></script>
-    <script type="module" src="./assets/pages/home.js"></script>
-  </body>
+      <script type="module" src="./assets/pages/home.js"></script>
+    </body>
+  </div>
 </html>

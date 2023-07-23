@@ -1,61 +1,45 @@
-import {
-  printCard,
-  createCard,
-  showCheckbox,
-  emptyContainer,
-  crossedFilters,
-} from "../modules/functions.js";
+const { createApp } = Vue;
 
-let containerUpcoming = document.getElementById("upcomingEventsContainer");
-let currentDate;
-let events;
-let categories;
-let categoriesNoRepeat;
-let categoriesArray;
-let checkboxContainer = document.getElementById("checkboxContainer");
-let inputSearch = document.getElementById("searchBar");
-let checkboxChecked = [];
+createApp({
+  data() {
+    return {
+      events: [],
+      categories: [],
+      currentDate: null,
+      futureEvents: [],
+      checkboxChecked: [],
+      eventsFiltered: [],
+      valueSearch: "",
+    };
+  },
+  created() {
+    fetch("https://mindhub-xj03.onrender.com/api/amazing")
+      .then((res) => res.json())
+      .then((data) => {
+        this.events = data.events;
+        this.categories = [
+          ...new Set(data.events.map((event) => event.category)),
+        ];
+        this.currentDate = data.currentDate;
 
-fetch("https://mindhub-xj03.onrender.com/api/amazing")
-  .then((res) => res.json())
-  .then((data) => {
-    events = data.events;
-    currentDate = data.currentDate;
-    categories = events.map((event) => event.category);
-    categoriesNoRepeat = new Set(categories);
-    categoriesArray = Array.from(categoriesNoRepeat);
-    printCard(containerUpcoming, filterCard(events));
-    showCheckbox(categoriesArray, checkboxContainer);
-  })
-  .catch((err) => console.log(err));
+        this.futureEvents = data.events.filter(
+          (event) => event.date > data.currentDate
+        );
+        this.eventsFiltered = this.futureEvents;
 
-// functions
-
-function filterCard(array) {
-  let template = "";
-  for (let event of array) {
-    if (event.date > currentDate) {
-      template += createCard(event);
-    }
-  }
-  return template;
-}
-
-// eventlisteners
-
-checkboxContainer.addEventListener("change", (e) => {
-  let checkedCheckboxes = document.querySelectorAll(
-    "input[type='checkbox']:checked"
-  );
-  let checkedArray = Array.from(checkedCheckboxes);
-  checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(containerUpcoming);
-  printCard(containerUpcoming, filterCard(arrayFinal));
-});
-
-inputSearch.addEventListener("input", (e) => {
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(containerUpcoming);
-  printCard(containerUpcoming, filterCard(arrayFinal));
-});
+        console.log(this.futureEvents);
+      })
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    filter() {
+      this.eventsFiltered = this.futureEvents.filter(
+        (event) =>
+          event.name.toLowerCase().startsWith(this.valueSearch.toLowerCase()) &&
+          (this.checkboxChecked.includes(event.category) ||
+            this.checkboxChecked.length == 0)
+      );
+      console.log(this.eventsFiltered);
+    },
+  },
+}).mount("#app");

@@ -1,63 +1,43 @@
-import {
-  printCard,
-  createCard,
-  showCheckbox,
-  emptyContainer,
-  crossedFilters,
-} from "../modules/functions.js";
+const { createApp } = Vue;
 
-let containerPast = document.getElementById("pastEventsContainer");
-let currentDate;
-let events;
-let categories;
-let categoriesNoRepeat;
-let categoriesArray;
-let checkboxContainer = document.getElementById("checkboxContainer");
-let inputSearch = document.getElementById("searchBar");
-let checkboxChecked = [];
-
-
-fetch("https://mindhub-xj03.onrender.com/api/amazing")
-  .then((res) => res.json())
-  .then((data) => {
-    events = data.events;
-    currentDate = data.currentDate;
-    categories = events.map((event) => event.category);
-    categoriesNoRepeat = new Set(categories);
-    categoriesArray = Array.from(categoriesNoRepeat);
-    printCard(containerPast, filterCard(events));
-    showCheckbox(categoriesArray, checkboxContainer);
-  })
-  .catch((err) => console.log(err));
-
-// functions
-
-function filterCard(array) {
-  let template = "";
-  for (let event of array) {
-    if (event.date < currentDate) {
-      template += createCard(event);
-    }
-  }
-  console.log(template);
-  return template;
-}
-
-// eventListeners
-
-checkboxContainer.addEventListener("change", (e) => {
-  let checkedCheckboxes = document.querySelectorAll(
-    "input[type='checkbox']:checked"
-  );
-  let checkedArray = Array.from(checkedCheckboxes);
-  checkboxChecked = checkedArray.map((checkbox) => checkbox.value);
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(containerPast);
-  printCard(containerPast, filterCard(arrayFinal));
-});
-
-inputSearch.addEventListener("input", (e) => {
-  let arrayFinal = crossedFilters(events, inputSearch, checkboxChecked);
-  emptyContainer(containerPast);
-  printCard(containerPast, filterCard(arrayFinal));
-});
+createApp({
+  data() {
+    return {
+      events: [],
+      categories: [],
+      currentDate: null,
+      pastEvents: [],
+      checkboxChecked: [],
+      eventsFiltered: [],
+      valueSearch: "",
+    };
+  },
+  created() {
+    fetch("https://mindhub-xj03.onrender.com/api/amazing")
+      .then((res) => res.json())
+      .then((data) => {
+        this.events = data.events;
+        this.categories = [
+          ...new Set(data.events.map((event) => event.category)),
+        ];
+        this.currentDate = data.currentDate;
+        this.pastEvents = data.events.filter(
+          (event) => event.date < data.currentDate
+        );
+        this.eventsFiltered = this.pastEvents;
+        console.log(this.pastEvents);
+      })
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    filter() {
+      this.eventsFiltered = this.pastEvents.filter(
+        (event) =>
+          event.name.toLowerCase().startsWith(this.valueSearch.toLowerCase()) &&
+          (this.checkboxChecked.includes(event.category) ||
+            this.checkboxChecked.length == 0)
+      );
+      console.log(this.eventsFiltered);
+    },
+  },
+}).mount("#app");
