@@ -26,8 +26,6 @@ createApp({
           (event) => event.date > data.currentDate
         );
         this.eventsFiltered = this.futureEvents;
-
-        console.log(this.futureEvents);
       })
       .catch((err) => console.log(err));
   },

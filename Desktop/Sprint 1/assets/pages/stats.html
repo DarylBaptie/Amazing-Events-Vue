@@ -172,12 +172,15 @@
               </tr>
               <tr>
                 <td>
-                  {{highestPercentage.name}} {{highestPercentage.percentage}}
+                  {{highestPercentage.name}} ({{highestPercentage.percentage}})
                 </td>
                 <td>
-                  {{lowestPercentage.name}} {{lowestPercentage.percentage}}
+                  {{lowestPercentage.name}} ({{lowestPercentage.percentage}})
                 </td>
-                <td>{{highestCapacity.name}} {{highestCapacity.capacity}}</td>
+                <td>
+                  {{highestCapacity.name}}
+                  ({{highestCapacity.capacity.toLocaleString("en-US")}})
+                </td>
               </tr>
             </tbody>
           </table>
@@ -198,11 +201,13 @@
                 <td class="fw-semibold">Revenues</td>
                 <td class="fw-semibold">Percentile of assistance</td>
               </tr>
-              <tr>
-                <td>${category.category}</td>
-                <td>${category.revenue}</td>
-                <td>${category.percentileAssistance}</td>
-              </tr>
+              <template v-for="event of categoriesFutureArray">
+                <tr>
+                  <td>{{event.category}}</td>
+                  <td>{{event.revenue}}</td>
+                  <td>{{event.percentileAssistance}}</td>
+                </tr>
+              </template>
             </tbody>
           </table>
           <table class="table table-bordered text-center" style="width: 100%">
@@ -222,11 +227,13 @@
                 <td class="fw-semibold">Revenues</td>
                 <td class="fw-semibold">Percentile of assistance</td>
               </tr>
-              <tr>
-                <td>${category.category}</td>
-                <td>${category.revenue}</td>
-                <td>${category.percentileAssistance}</td>
-              </tr>
+              <template v-for="event of categoriesPastArray">
+                <tr>
+                  <td>{{event.category}}</td>
+                  <td>{{event.revenue}}</td>
+                  <td>{{event.percentileAssistance}}</td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>

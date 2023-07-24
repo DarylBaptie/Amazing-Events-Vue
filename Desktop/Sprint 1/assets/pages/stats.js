@@ -7,9 +7,11 @@ createApp({
       currentDate: "",
       futureEvents: [],
       pastEvents: [],
-      highestCapacity: null,
-      highestPercentage: null,
-      lowestPercentage: null,
+      highestCapacity: [],
+      highestPercentage: [],
+      lowestPercentage: [],
+      categoriesPastArray: [],
+      categoriesFutureArray: [],
     };
   },
   created() {
@@ -29,6 +31,16 @@ createApp({
         this.lowestPercentage = this.percentageAssistance(this.events)[
           this.percentageAssistance(this.events).length - 1
         ];
+        this.categoriesPastArray = this.revenueAssistance(
+          this.events,
+          this.pastEvents,
+          "assistance"
+        );
+        this.categoriesFutureArray = this.revenueAssistance(
+          this.events,
+          this.futureEvents,
+          "estimate"
+        );
       })
       .catch((err) => console.log(err));
   },
@@ -70,64 +82,43 @@ createApp({
 
       return percentageAssistanceSort;
     },
+    revenueAssistance(array, array2, attendees) {
+      for (let event of array) {
+        event.revenue = event[attendees] * event.price;
+      }
+      const categoryArray = array2.reduce((acc, cur) => {
+        const item = acc.find(({ category }) => category === cur.category);
+        if (item)
+          (item.revenue += cur.revenue),
+            (item.capacity += cur.capacity),
+            (item[attendees] += cur[attendees]);
+        else
+          acc.push({
+            category: cur.category,
+            revenue: cur.revenue,
+            capacity: cur.capacity,
+            [attendees]: cur[attendees],
+          });
+        return acc;
+      }, []);
+
+      for (let category of categoryArray) {
+        category.percentileAssistance = (
+          category[attendees] / category.capacity
+        )
+          .toLocaleString("en-US", {
+            style: "percent",
+            minimumFractionDigits: 2,
+          })
+          .replace(".00", "");
+        category.revenue = category.revenue.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        });
+      }
+
+      return categoryArray;
+    },
   },
 }).mount("#app");
-
-/// FUNCTIONS 1ST ROW
-
-/// FUNCTIONS 2ND ROW
-
-function revenueAssistance(array, array2, attendees) {
-  for (let event of array) {
-    event.revenue = event[attendees] * event.price;
-  }
-  const categoryArray = array2.reduce((acc, cur) => {
-    const item = acc.find(({ category }) => category === cur.category);
-    if (item)
-      (item.revenue += cur.revenue),
-        (item.capacity += cur.capacity),
-        (item[attendees] += cur[attendees]);
-    else
-      acc.push({
-        category: cur.category,
-        revenue: cur.revenue,
-        capacity: cur.capacity,
-        [attendees]: cur[attendees],
-      });
-    return acc;
-  }, []);
-
-  for (let category of categoryArray) {
-    category.percentileAssistance = (category[attendees] / category.capacity)
-      .toLocaleString("en-US", {
-        style: "percent",
-        minimumFractionDigits: 2,
-      })
-      .replace(".00", "");
-    category.revenue = category.revenue.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    });
-  }
-
-  return categoryArray;
-}
-
-/// FUNCTIONS CREATE AND PRINT ROWS
-
-function firstRow(array) {
-  let highestCapacity = biggestCapacity(array);
-  let highestPercentage = percentageAssistance(array)[0];
-  let lowestPercentage =
-    percentageAssistance(array)[percentageAssistance(array).length - 1];
-
-  return `
-  <tr>
-  <td>${highestPercentage.name} (${highestPercentage.percentage})</td>
-  <td>${lowestPercentage.name}: (${lowestPercentage.percentage})</td>
-  <td>${highestCapacity.name} (${highestCapacity.capacity.toLocaleString(
-    "en-US"
-  )})</td>
-  </tr>`;
-}

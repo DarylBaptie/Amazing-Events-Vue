@@ -25,7 +25,6 @@ createApp({
           (event) => event.date < data.currentDate
         );
         this.eventsFiltered = this.pastEvents;
-        console.log(this.pastEvents);
       })
       .catch((err) => console.log(err));
   },

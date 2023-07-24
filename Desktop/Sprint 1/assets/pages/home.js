@@ -31,7 +31,6 @@ createApp({
           (this.checkboxChecked.includes(event.category) ||
             this.checkboxChecked.length == 0)
       );
-      console.log(this.eventsFiltered);
     },
   },
 }).mount("#app");
