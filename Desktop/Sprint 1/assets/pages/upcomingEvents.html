@@ -13,6 +13,7 @@
     <title>Amazing Events | Upcoming Events</title>
   </head>
   <div id="app">
+    <template v-cloak> {{filter}} </template>
   <body class="bg-light d-flex flex-column h-100">
     <header>
       <nav class="navbar navbar-expand-lg bg-light">
@@ -168,7 +169,6 @@
                 name="category"
                 v-bind:value="category"
                 v-model="checkboxChecked"
-                v-on:change="filter"
               />
               <label class="form-check-label pe-2" v-bind:for="category"
                 >{{category}}
@@ -186,7 +186,6 @@
               placeholder="Search"
               aria-label="Input group example"
               aria-describedby="basic-addon1"
-              v-on:input="filter"
               v-model="valueSearch"
             />
             <span class="input-group-text" id="basic-addon1">
@@ -232,7 +231,7 @@
               </p>
 
               <a
-                v-bind:href="'./assets/pages/details.html?parameter=%'+event._id"
+                v-bind:href="'./details.html?parameter='+event._id"
                 class="btn btn-danger p-3 fw-bold"
               >
                 Details
@@ -241,7 +240,9 @@
           </div>
         </div>
       </template>
-
+      <template v-else>
+        <h2>NO RESULTS FOUND</h2>
+      </template>
 
     </div>
     </main>

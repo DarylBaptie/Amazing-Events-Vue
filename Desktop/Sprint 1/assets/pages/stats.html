@@ -12,240 +12,264 @@
     />
     <title>Amazing Events | Stats</title>
   </head>
-  <body class="bg-light d-flex flex-column h-100">
-    <header>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="../../index.html">
-            <img
-              src="../images/amazing_brand.png"
-              alt="Amazing_Events_logo"
-              width="175"
-              height="50"
-            />
-          </a>
+  <div id="app">
+    <body class="bg-light d-flex flex-column h-100">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html">
+              <img
+                src="../images/amazing_brand.png"
+                alt="Amazing_Events_logo"
+                width="175"
+                height="50"
+              />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarNavAltMarkup"
+            >
+              <div class="navbar-nav">
+                <a
+                  class="nav-link navLink border border-3 m-1 text-white"
+                  href="../../index.html"
+                  >HOME</a
+                >
+                <a
+                  class="nav-link navLink border border-3 m-1 text-white"
+                  href="./upcomingEvents.html"
+                  >UPCOMING EVENTS</a
+                >
+                <a
+                  class="nav-link navLink border border-3 m-1 text-white"
+                  href="./pastEvents.html"
+                  >PAST EVENTS</a
+                >
+                <a
+                  class="nav-link navLink border border-3 m-1 text-white"
+                  aria-current="page"
+                  href="./contact.html"
+                  >CONTACT</a
+                >
+                <a
+                  class="nav-link active navLink border border-3 m-1 text-white"
+                  aria-current="page"
+                  href="#"
+                  >STATS</a
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="mb-4">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide mb-3"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="../images/optional_banner_1.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="stats banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">STATS</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="../images/optional_banner_2.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="stats banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">STATS</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="../images/optional_banner_3.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="stats banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">STATS</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="../images/optional_banner_4.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="stats banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">STATS</h2>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="../images/optional_banner_5.jpg"
+                class="d-block w-100 carouselBanner"
+                alt="stats banner"
+              />
+              <div class="carousel-caption top-1">
+                <h2 class="display-2">STATS</h2>
+              </div>
+            </div>
+          </div>
           <button
-            class="navbar-toggler"
+            class="carousel-control-prev"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
           </button>
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNavAltMarkup"
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
           >
-            <div class="navbar-nav">
-              <a
-                class="nav-link navLink border border-3 m-1 text-white"
-                href="../../index.html"
-                >HOME</a
-              >
-              <a
-                class="nav-link navLink border border-3 m-1 text-white"
-                href="./upcomingEvents.html"
-                >UPCOMING EVENTS</a
-              >
-              <a
-                class="nav-link navLink border border-3 m-1 text-white"
-                href="./pastEvents.html"
-                >PAST EVENTS</a
-              >
-              <a
-                class="nav-link navLink border border-3 m-1 text-white"
-                aria-current="page"
-                href="./contact.html"
-                >CONTACT</a
-              >
-              <a
-                class="nav-link active navLink border border-3 m-1 text-white"
-                aria-current="page"
-                href="#"
-                >STATS</a
-              >
-            </div>
-          </div>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-      </nav>
-    </header>
 
-    <main class="mb-4">
-      <div
-        id="carouselExampleControls"
-        class="carousel slide mb-3"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="../images/optional_banner_1.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="stats banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">STATS</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="../images/optional_banner_2.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="stats banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">STATS</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="../images/optional_banner_3.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="stats banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">STATS</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="../images/optional_banner_4.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="stats banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">STATS</h2>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="../images/optional_banner_5.jpg"
-              class="d-block w-100 carouselBanner"
-              alt="stats banner"
-            />
-            <div class="carousel-caption top-1">
-              <h2 class="display-2">STATS</h2>
-            </div>
-          </div>
+        <div
+          class="container col-md-10 mt-3 g-0 g-md-4 p-1 p-md-3 rounded statsMain"
+        >
+          <table class="table table-bordered text-center">
+            <colgroup>
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+            </colgroup>
+            <thead>
+              <th scope="col" colspan="3">Event Statistics</th>
+            </thead>
+            <tbody id="headTable">
+              <tr>
+                <td class="fw-semibold">Events with highest % of attendance</td>
+                <td class="fw-semibold">Events with lowest % of attendance</td>
+                <td class="fw-semibold">Event with largest capacity</td>
+              </tr>
+              <tr>
+                <td>
+                  {{highestPercentage.name}} {{highestPercentage.percentage}}
+                </td>
+                <td>
+                  {{lowestPercentage.name}} {{lowestPercentage.percentage}}
+                </td>
+                <td>{{highestCapacity.name}} {{highestCapacity.capacity}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered text-center" style="width: 100%">
+            <colgroup>
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+            </colgroup>
+            <thead>
+              <th scope="col" colspan="3">
+                Future events statistics by category
+              </th>
+            </thead>
+            <tbody id="firstTable">
+              <tr>
+                <td class="fw-semibold">Categories</td>
+                <td class="fw-semibold">Revenues</td>
+                <td class="fw-semibold">Percentile of assistance</td>
+              </tr>
+              <tr>
+                <td>${category.category}</td>
+                <td>${category.revenue}</td>
+                <td>${category.percentileAssistance}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered text-center" style="width: 100%">
+            <colgroup>
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+              <col span="1" class="colTable" />
+            </colgroup>
+            <thead>
+              <th scope="col" colspan="3">
+                Past events statistics by category
+              </th>
+            </thead>
+            <tbody id="secondTable">
+              <tr>
+                <td class="fw-semibold">Categories</td>
+                <td class="fw-semibold">Revenues</td>
+                <td class="fw-semibold">Percentile of assistance</td>
+              </tr>
+              <tr>
+                <td>${category.category}</td>
+                <td>${category.revenue}</td>
+                <td>${category.percentileAssistance}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-      <div
-        class="container col-md-10 mt-3 g-0 g-md-4 p-1 p-md-3 rounded statsMain"
+      </main>
+      <footer
+        class="container d-flex flex-wrap justify-content-between justify-content-md-between pt-3 mt-auto border-top"
       >
-        <table class="table table-bordered text-center">
-          <colgroup>
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-          </colgroup>
-          <thead>
-            <th scope="col" colspan="3">Event Statistics</th>
-          </thead>
-          <tbody id="headTable">
-            <tr>
-              <td class="fw-semibold">Events with highest % of attendance</td>
-              <td class="fw-semibold">Events with lowest % of attendance</td>
-              <td class="fw-semibold">Event with largest capacity</td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="table table-bordered text-center" style="width: 100%">
-          <colgroup>
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-          </colgroup>
-          <thead>
-            <th scope="col" colspan="3">
-              Future events statistics by category
-            </th>
-          </thead>
-          <tbody id="firstTable">
-            <tr>
-              <td class="fw-semibold">Categories</td>
-              <td class="fw-semibold">Revenues</td>
-              <td class="fw-semibold">Percentile of assistance</td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="table table-bordered text-center" style="width: 100%">
-          <colgroup>
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-            <col span="1" class="colTable" />
-          </colgroup>
-          <thead>
-            <th scope="col" colspan="3">Past events statistics by category</th>
-          </thead>
-          <tbody id="secondTable">
-            <tr>
-              <td class="fw-semibold">Categories</td>
-              <td class="fw-semibold">Revenues</td>
-              <td class="fw-semibold">Percentile of assistance</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-    <footer
-      class="container d-flex flex-wrap justify-content-between justify-content-md-between pt-3 mt-auto border-top"
-    >
-      <ul class="nav col-md-4 d-flex justify-content-md-start">
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="../images/whatsapp.png"
-              alt="whatsapp logo"
-            />
-          </a>
-        </li>
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="../images/instagram.png"
-              alt="instagram logo"
-          /></a>
-        </li>
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><img
-              class="socials"
-              src="../images/facebook.png"
-              alt="facebook logo"
-          /></a>
-        </li>
-      </ul>
-      <div class="col-md-4 d-flex align-items-center justify-content-md-end">
-        <span class="mb-md-0 text-body-secondary">COHORT 49</span>
-      </div>
-    </footer>
+        <ul class="nav col-md-4 d-flex justify-content-md-start">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="../images/whatsapp.png"
+                alt="whatsapp logo"
+              />
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="../images/instagram.png"
+                alt="instagram logo"
+            /></a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><img
+                class="socials"
+                src="../images/facebook.png"
+                alt="facebook logo"
+            /></a>
+          </li>
+        </ul>
+        <div class="col-md-4 d-flex align-items-center justify-content-md-end">
+          <span class="mb-md-0 text-body-secondary">COHORT 49</span>
+        </div>
+      </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
-    "></script>
-    <script src="stats.js"></script>
-  </body>
+      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
+  "></script>
+      <script src="stats.js"></script>
+    </body>
+  </div>
 </html>

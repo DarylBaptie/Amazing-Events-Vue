@@ -19,11 +19,11 @@ createApp({
         this.categories = [
           ...new Set(data.events.map((event) => event.category)),
         ];
-        console.log(this.categories);
       })
       .catch((err) => console.log(err));
   },
-  methods: {
+
+  computed: {
     filter() {
       this.eventsFiltered = this.events.filter(
         (event) =>

@@ -1,65 +1,79 @@
-let events;
-let currentDate;
-let table1 = document.getElementById("headTable");
-let table2 = document.getElementById("firstTable");
-let table3 = document.getElementById("secondTable");
-let futureEvents;
-let pastEvents;
+const { createApp } = Vue;
 
-fetch("https://mindhub-xj03.onrender.com/api/amazing")
-  .then((res) => res.json())
-  .then((data) => {
-    events = data.events;
-    currentDate = data.currentDate;
-    pastEvents = events.filter((event) => event.date < currentDate);
-    futureEvents = events.filter((event) => event.date > currentDate);
-    printRow(
-      events,
-      revenueAssistance(events, futureEvents, "estimate"),
-      revenueAssistance(events, pastEvents, "assistance"),
-      table1,
-      table2,
-      table3
-    );
-  })
-  .catch((err) => console.log(err));
+createApp({
+  data() {
+    return {
+      events: [],
+      currentDate: "",
+      futureEvents: [],
+      pastEvents: [],
+      highestCapacity: null,
+      highestPercentage: null,
+      lowestPercentage: null,
+    };
+  },
+  created() {
+    fetch("https://mindhub-xj03.onrender.com/api/amazing")
+      .then((res) => res.json())
+      .then((data) => {
+        this.events = data.events;
+        this.currentDate = data.currentDate;
+        this.pastEvents = this.events.filter(
+          (event) => event.date < this.currentDate
+        );
+        this.futureEvents = this.events.filter(
+          (event) => event.date > this.currentDate
+        );
+        this.highestCapacity = this.biggestCapacity(this.events);
+        this.highestPercentage = this.percentageAssistance(this.events)[0];
+        this.lowestPercentage = this.percentageAssistance(this.events)[
+          this.percentageAssistance(this.events).length - 1
+        ];
+      })
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    biggestCapacity(array) {
+      const capacitySort = array.sort((a, b) => {
+        if (a.capacity > b.capacity) {
+          return -1;
+        }
+        if (b.capacity < a.capacity) {
+          return 1;
+        }
+        return 0;
+      });
+
+      return capacitySort[0];
+    },
+
+    percentageAssistance(array) {
+      let pastEvents = array.filter((event) => event.date < this.currentDate);
+      for (let event of pastEvents) {
+        event.percentage = (event.assistance / event.capacity)
+          .toLocaleString("en-US", {
+            style: "percent",
+            minimumFractionDigits: 2,
+          })
+          .replace(".00", "");
+      }
+
+      const percentageAssistanceSort = pastEvents.sort((a, b) => {
+        if (a.percentage > b.percentage) {
+          return -1;
+        }
+        if (b.percentage < a.percentage) {
+          return 1;
+        }
+        return 0;
+      });
+
+      return percentageAssistanceSort;
+    },
+  },
+}).mount("#app");
 
 /// FUNCTIONS 1ST ROW
-
-function biggestCapacity(array) {
-  const capacitySort = array.sort((a, b) => {
-    if (a.capacity > b.capacity) {
-      return -1;
-    }
-    if (b.capacity < a.capacity) {
-      return 1;
-    }
-    return 0;
-  });
-
-  return capacitySort[0];
-}
-
-function percentageAssistance(array) {
-  let pastEvents = array.filter((event) => event.date < currentDate);
-  for (let event of pastEvents) {
-    event.percentage = (event.assistance / event.capacity)
-      .toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2 })
-      .replace(".00", "");
-  }
-
-  const percentageAssistanceSort = pastEvents.sort((a, b) => {
-    if (a.percentage > b.percentage) {
-      return -1;
-    }
-    if (b.percentage < a.percentage) {
-      return 1;
-    }
-    return 0;
-  });
-
-  return percentageAssistanceSort;
-}
 
 /// FUNCTIONS 2ND ROW
 
@@ -116,24 +130,4 @@ function firstRow(array) {
     "en-US"
   )})</td>
   </tr>`;
-}
-
-function createRow(category) {
-  return `<tr>
-  <td >${category.category}</td>
-  <td >${category.revenue}</td>
-  <td >${category.percentileAssistance}</td>
-  </tr>
-  `;
-}
-
-function printRow(array1, array2, array3, table1, table2, table3) {
-  table1.innerHTML += firstRow(array1);
-
-  for (let checkbox of array2) {
-    table2.innerHTML += createRow(checkbox);
-  }
-  for (let checkbox of array3) {
-    table3.innerHTML += createRow(checkbox);
-  }
 }

@@ -29,7 +29,7 @@ createApp({
       })
       .catch((err) => console.log(err));
   },
-  methods: {
+  computed: {
     filter() {
       this.eventsFiltered = this.pastEvents.filter(
         (event) =>
@@ -37,7 +37,6 @@ createApp({
           (this.checkboxChecked.includes(event.category) ||
             this.checkboxChecked.length == 0)
       );
-      console.log(this.eventsFiltered);
     },
   },
 }).mount("#app");
