@@ -21,7 +21,6 @@ createApp({
           ...new Set(data.events.map((event) => event.category)),
         ];
         this.currentDate = data.currentDate;
-
         this.futureEvents = data.events.filter(
           (event) => event.date > data.currentDate
         );
